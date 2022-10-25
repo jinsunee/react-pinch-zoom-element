@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "react": "18.0.0-rc.2",
     "react-dom": "18.0.0-rc.2",
-    "react-tracked": "latest",
     "react-scripts": "latest"
   },
   "scripts": {
