@@ -1,13 +1,13 @@
 import { animated, useSpring } from "@react-spring/web";
 import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
-import React, { ReactNode, useEffect, useRef } from "react";
+import React from "react";
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
 
-export function PinchZoom({ children }: { children: ReactNode }) {
-  const ref = useRef<any>(null);
+export function PinchZoom({ children }: { children: React.ReactNode }) {
+  const ref = React.useRef<any>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handler = (e: any) => e.preventDefault();
     document.addEventListener("gesturestart", handler);
     document.addEventListener("gesturechange", handler);
@@ -28,7 +28,7 @@ export function PinchZoom({ children }: { children: ReactNode }) {
 
   useGesture(
     {
-      onDrag: ({ pinching, cancel, offset: [x, y], ...rest }) => {
+      onDrag: ({ pinching, cancel, offset: [x, y] }) => {
         if (pinching) return cancel();
 
         api.start({ x, y });
