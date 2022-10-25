@@ -1,0 +1,1 @@
+export { PinchZoom } from "./PinchZoom";
