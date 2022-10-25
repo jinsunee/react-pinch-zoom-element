@@ -4,7 +4,7 @@ import React, { ReactNode, useEffect, useRef } from "react";
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
 
-export default function PinchZoom({ children }: { children: ReactNode }) {
+export function PinchZoom({ children }: { children: ReactNode }) {
   const ref = useRef<any>(null);
 
   useEffect(() => {
