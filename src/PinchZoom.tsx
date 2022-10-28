@@ -1,24 +1,11 @@
 import { animated, useSpring } from "@react-spring/web";
 import { createUseGesture, dragAction, pinchAction } from "@use-gesture/react";
-import React from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 const useGesture = createUseGesture([dragAction, pinchAction]);
 
-export function PinchZoom({ children }: { children: React.ReactNode }) {
-  const ref = React.useRef<any>(null);
-
-  React.useEffect(() => {
-    const handler = (e: any) => e.preventDefault();
-    document.addEventListener("gesturestart", handler);
-    document.addEventListener("gesturechange", handler);
-    document.addEventListener("gestureend", handler);
-    return () => {
-      document.removeEventListener("gesturestart", handler);
-      document.removeEventListener("gesturechange", handler);
-      document.removeEventListener("gestureend", handler);
-    };
-  }, []);
-
+export function PinchZoom({ children }: { children: ReactNode }) {
+  const ref = useRef<any>(null);
   const [style, api] = useSpring(() => ({
     x: 0,
     y: 0,
@@ -59,6 +46,18 @@ export function PinchZoom({ children }: { children: React.ReactNode }) {
       pinch: { rubberband: true },
     }
   );
+
+  useEffect(() => {
+    const handler = (e: any) => e.preventDefault();
+    document.addEventListener("gesturestart", handler);
+    document.addEventListener("gesturechange", handler);
+    document.addEventListener("gestureend", handler);
+    return () => {
+      document.removeEventListener("gesturestart", handler);
+      document.removeEventListener("gesturechange", handler);
+      document.removeEventListener("gestureend", handler);
+    };
+  }, []);
 
   return (
     <animated.div ref={ref} style={{ ...style, touchAction: "none" }}>

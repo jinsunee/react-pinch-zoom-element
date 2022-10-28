@@ -1,11 +1,7 @@
 import React from "react";
 import { PinchZoom } from "../src";
 
-export default function PinchZoomExample({
-  backgroundColor = "purple",
-}: {
-  backgroundColor: string;
-}) {
+export default function PinchZoomExample() {
   return (
     <div
       style={{
@@ -20,25 +16,16 @@ export default function PinchZoomExample({
         style={{
           border: "1px solid green",
           overflow: "hidden",
-          width: 400,
+          width: 800,
           height: 400,
         }}
       >
         <PinchZoom>
-          <div
-            style={{
-              backgroundColor,
-              height: 300,
-              width: 300,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontWeight: "bold",
-              fontSize: 20,
-            }}
-          >
-            Zoom in it!
-          </div>
+          <img
+            src={require("./assets/img.jpg")}
+            alt=""
+            style={{ width: 400, height: 400, pointerEvents: "none" }}
+          />
         </PinchZoom>
       </div>
     </div>
